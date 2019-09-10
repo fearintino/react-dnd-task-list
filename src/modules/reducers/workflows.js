@@ -6,7 +6,8 @@ import { makeNewIdsArray, moveIdBetweenArrays } from '../../utils/idsArrayHelper
 export type Workflow = {
   id: string,
   title: string,
-  taskIds: Array<string>
+  sort: number,
+  taskIds: Array<string>,
 };
 
 type WorkflowState = {
@@ -18,16 +19,19 @@ const defaultState: WorkflowState = {
     id: 'to-do',
     title: 'To Do',
     taskIds: ['task-1', 'task-2'],
+    sort: 0,
   },
   'in-progress': {
     id: 'in-progress',
     title: 'In Progress',
     taskIds: ['task-3', 'task-4'],
+    sort: 1,
   },
   done: {
     id: 'done',
     title: 'Done',
     taskIds: ['task-5'],
+    sort: 2,
   },
 };
 

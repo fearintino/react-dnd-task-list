@@ -16,7 +16,7 @@ const Container = styled.div`
 
 type AppProps = {
   +handleDragEnd: Function,
-  +workflows: { [string]: WorkflowType },
+  +workflows: Array<WorkflowType>,
 }
 
 class App extends Component<AppProps> {
@@ -41,15 +41,15 @@ class App extends Component<AppProps> {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Container>
-          {(Object.values(workflows): any).map((workflow: WorkflowType) => (
-            <Workflow key={workflow.id} workflow={workflow} />
-          ))}
+          {workflows.map(workflow => <Workflow key={workflow.id} workflow={workflow} />)}
         </Container>
       </DragDropContext>
     );
   }
 }
 
-const mapStateToProps = state => ({ workflows: state.workflows });
+const mapStateToProps = state => ({
+  workflows: (Object.values(state.workflows): any).sort((a, b) => a.sort - b.sort),
+});
 
 export default connect(mapStateToProps, { handleDragEnd: handleDragEndAction })(App);
