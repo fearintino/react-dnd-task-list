@@ -1,11 +1,12 @@
 // @flow
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
 
 import Task from './Task';
 import type { Workflow as WorkflowType } from '../modules/reducers/workflows';
+import dictionary from '../dictionary';
 
 const Container = styled.div`
   padding: 15px;
@@ -30,10 +31,34 @@ const TaskList = styled.div`
   min-width: 300px;
 `;
 
+const NewTaskActivator = styled.div`
+  cursor: pointer;
+`;
+
+const ItemInput = styled.input`
+  height: 20px;
+  margin-bottom: 10px;
+`;
+
 type WorkflowComponentProps = { +workflow: WorkflowType };
 
 const Workflow = ({ workflow: { id, title, taskIds } }: WorkflowComponentProps) => {
   const tasks = useSelector(state => taskIds.map(taskId => state.tasks[taskId]));
+  const [state, setState] = useState({
+    addingNewTask: true,
+  });
+
+  function handleNewItemActivatorClick() {
+    const newAddingState = !state.addingNewTask;
+
+    setState({ addingNewTask: newAddingState });
+  }
+
+  function handleNewItemSubmit(e) {
+    if (e.key === 'Enter') {
+      handleNewItemActivatorClick();
+    }
+  }
 
   return (
     <Container>
@@ -49,6 +74,14 @@ const Workflow = ({ workflow: { id, title, taskIds } }: WorkflowComponentProps) 
           </TaskList>
         )}
       </Droppable>
+
+      {state.addingNewTask && (
+        <ItemInput onKeyDown={handleNewItemSubmit} />
+      )}
+
+      <NewTaskActivator onClick={handleNewItemActivatorClick}>
+        {!state.addingNewTask ? dictionary.addNewTask : dictionary.cancel}
+      </NewTaskActivator>
     </Container>
   );
 };
