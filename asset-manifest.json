@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/react-dnd-task-list/static/js/main.8c28dd3a.chunk.js",
-    "main.js.map": "/react-dnd-task-list/static/js/main.8c28dd3a.chunk.js.map",
+    "main.js": "/react-dnd-task-list/static/js/main.45c6f26e.chunk.js",
+    "main.js.map": "/react-dnd-task-list/static/js/main.45c6f26e.chunk.js.map",
     "runtime~main.js": "/react-dnd-task-list/static/js/runtime~main.385a7756.js",
     "runtime~main.js.map": "/react-dnd-task-list/static/js/runtime~main.385a7756.js.map",
     "static/css/2.98b27591.chunk.css": "/react-dnd-task-list/static/css/2.98b27591.chunk.css",
     "static/js/2.29228682.chunk.js": "/react-dnd-task-list/static/js/2.29228682.chunk.js",
     "static/js/2.29228682.chunk.js.map": "/react-dnd-task-list/static/js/2.29228682.chunk.js.map",
     "index.html": "/react-dnd-task-list/index.html",
-    "precache-manifest.467f1b8e3d2b6bfe714ca1f10732f4f0.js": "/react-dnd-task-list/precache-manifest.467f1b8e3d2b6bfe714ca1f10732f4f0.js",
+    "precache-manifest.2e7def7c1d3881311748d74aec2ced98.js": "/react-dnd-task-list/precache-manifest.2e7def7c1d3881311748d74aec2ced98.js",
     "service-worker.js": "/react-dnd-task-list/service-worker.js",
     "static/css/2.98b27591.chunk.css.map": "/react-dnd-task-list/static/css/2.98b27591.chunk.css.map"
   }
