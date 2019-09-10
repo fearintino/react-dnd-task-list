@@ -18,6 +18,8 @@ const Title = styled.h3`
 `;
 
 const TaskList = styled.div`
+  transition: background-color 0.2s ease;
+  background-color: ${props => (props.isDraggingOver ? 'skyblue' : 'white')};
   padding: 8px;
 `;
 
@@ -30,8 +32,11 @@ const Workflow = ({ workflow: { id, title, taskIds } }: WorkflowComponentProps) 
     <Container>
       <Title>{title}</Title>
       <Droppable droppableId={id}>
-        {provided => (
-          <TaskList ref={provided.innerRef}>
+        {(provided, snapshot) => (
+          <TaskList
+            ref={provided.innerRef}
+            isDraggingOver={snapshot.isDraggingOver}
+          >
             {tasks.map((task, index) => <Task key={task.id} index={index} task={task} />)}
             {provided.placeholder}
           </TaskList>

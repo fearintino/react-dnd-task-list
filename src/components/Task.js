@@ -7,7 +7,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import type { Task as TaskType } from '../modules/reducers/tasks';
 
 const Container = styled.div`
-  background-color: white;
+  background-color: ${props => (props.isDragging ? 'lightgreen' : 'white')};
   padding: 8px;
   margin-bottom: 8px;
   border: 1px solid lightgrey;
@@ -18,11 +18,12 @@ type TaskProps = { +task: TaskType, +index: number };
 
 const Task = ({ task, index }: TaskProps) => (
   <Draggable draggableId={task.id} index={index}>
-    {provided => (
+    {(provided, snapshot) => (
       <Container
-        ref={provided.innerRef}
         {...provided.draggableProps}
         {...provided.dragHandleProps}
+        ref={provided.innerRef}
+        isDragging={snapshot.isDragging}
       >
         {task.content}
       </Container>
