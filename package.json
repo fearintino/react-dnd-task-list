@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "css-reset": "^0.0.1",
     "flow-bin": "^0.107.0",
     "gh-pages": "^2.1.1",
     "react": "^16.9.0",
