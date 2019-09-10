@@ -11,7 +11,7 @@ const Container = styled.div`
   padding: 8px;
   margin-bottom: 8px;
   border: 1px solid lightgrey;
-  border-radius: 2px;
+  border-radius: 5px;
 `;
 
 type TaskProps = { +task: TaskType, +index: number };
