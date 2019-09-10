@@ -1,5 +1,6 @@
 // @flow
 import type { Action } from '../action';
+import { ACTION_TYPES } from '../action';
 
 export type Task = {
   id: string,
@@ -18,12 +19,21 @@ const defaultState = {
   'task-5': { id: 'task-5', content: 'TEST 5' },
 };
 
-export default (state: TasksState = defaultState, { type }: Action): TasksState => {
+export default (state: TasksState = defaultState, { type, payload }: Action): TasksState => {
   if (typeof state === 'undefined') {
     return defaultState;
   }
 
   switch (type) {
+    case ACTION_TYPES.NEW_TASK_ADDED: {
+      const { task } = payload;
+
+      return {
+        ...state,
+        [task.id]: task,
+      };
+    }
+
     default:
       return state;
   }

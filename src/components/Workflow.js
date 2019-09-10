@@ -1,11 +1,12 @@
 // @flow
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Droppable } from 'react-beautiful-dnd';
 
 import Task from './Task';
 import type { Workflow as WorkflowType } from '../modules/reducers/workflows';
+import { handleNewTask } from '../modules/action';
 import dictionary from '../dictionary';
 
 const Container = styled.div`
@@ -44,8 +45,9 @@ type WorkflowComponentProps = { +workflow: WorkflowType };
 
 const Workflow = ({ workflow: { id, title, taskIds } }: WorkflowComponentProps) => {
   const tasks = useSelector(state => taskIds.map(taskId => state.tasks[taskId]));
+  const dispatch = useDispatch();
   const [state, setState] = useState({
-    addingNewTask: true,
+    addingNewTask: false,
   });
 
   function handleNewItemActivatorClick() {
@@ -55,8 +57,9 @@ const Workflow = ({ workflow: { id, title, taskIds } }: WorkflowComponentProps) 
   }
 
   function handleNewItemSubmit(e) {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && e.target.value) {
       handleNewItemActivatorClick();
+      handleNewTask(e.target.value, id)(dispatch);
     }
   }
 

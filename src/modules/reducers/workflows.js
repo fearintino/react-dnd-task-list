@@ -41,6 +41,18 @@ export default (state: WorkflowState = defaultState, { type, payload }: Action):
   }
 
   switch (type) {
+    case ACTION_TYPES.NEW_TASK_ADDED: {
+      const { task, workflowId } = payload;
+      const workflow = state[workflowId];
+
+      return {
+        ...state,
+        [workflowId]: {
+          ...workflow,
+          taskIds: [...workflow.taskIds, task.id],
+        },
+      };
+    }
     case ACTION_TYPES.TASK_MOVED_IN_WORKFLOW: {
       const { source, destination, draggableId } = payload;
       const start = state[source.droppableId];
