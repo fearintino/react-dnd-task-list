@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6543d153b395726c11e16547f6c12cae",
+    "revision": "206c571b952579512ba9a63b68873bfd",
     "url": "/react-dnd-task-list/index.html"
   },
   {
-    "revision": "f69be0cfcf28c581c1e6",
+    "revision": "418e4f570594e38848ae",
     "url": "/react-dnd-task-list/static/css/2.98b27591.chunk.css"
   },
   {
-    "revision": "f69be0cfcf28c581c1e6",
-    "url": "/react-dnd-task-list/static/js/2.29228682.chunk.js"
+    "revision": "418e4f570594e38848ae",
+    "url": "/react-dnd-task-list/static/js/2.414dc2b6.chunk.js"
   },
   {
-    "revision": "083802d4356171f60468",
-    "url": "/react-dnd-task-list/static/js/main.45c6f26e.chunk.js"
+    "revision": "00e3237b241839e31b6c",
+    "url": "/react-dnd-task-list/static/js/main.b26441c0.chunk.js"
   },
   {
     "revision": "2f3a22394b27a2182293",
