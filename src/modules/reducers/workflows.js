@@ -1,6 +1,7 @@
 // @flow
-import { Types } from '../action';
+import { ACTION_TYPES } from '../action';
 import type { Action } from '../action';
+import { makeNewIdsArray, moveIdBetweenArrays } from '../../utils/idsArrayHelper';
 
 export type Workflow = {
   id: string,
@@ -24,7 +25,7 @@ const defaultState: WorkflowState = {
     taskIds: ['task-3', 'task-4'],
   },
   done: {
-    id: 'Done',
+    id: 'done',
     title: 'Done',
     taskIds: ['task-5'],
   },
@@ -36,17 +37,39 @@ export default (state: WorkflowState = defaultState, { type, payload }: Action):
   }
 
   switch (type) {
-    case Types.DRAG_ENDED: {
-      const workflow = state[payload.workflowId];
-      const newIdsArray = Array.from(workflow.taskIds);
-      newIdsArray.splice(payload.sourceIndex, 1);
-      newIdsArray.splice(payload.destinationIndex, 0, payload.draggableId);
+    case ACTION_TYPES.TASK_MOVED_IN_WORKFLOW: {
+      const { source, destination, draggableId } = payload;
+      const start = state[source.droppableId];
 
       return {
         ...state,
-        [workflow.id]: {
-          ...workflow,
-          taskIds: newIdsArray,
+        [start.id]: {
+          ...start,
+          taskIds: makeNewIdsArray(start.taskIds, source.index, destination.index, draggableId),
+        },
+      };
+    }
+    case ACTION_TYPES.TASK_MOVED_BETWEEN_WORKFLOWS: {
+      const { source, destination, draggableId } = payload;
+      const start = state[source.droppableId];
+      const finish = state[destination.droppableId];
+      const { initialResult, destinationResult } = moveIdBetweenArrays(
+        start.taskIds,
+        source.index,
+        finish.taskIds,
+        destination.index,
+        draggableId,
+      );
+
+      return {
+        ...state,
+        [start.id]: {
+          ...start,
+          taskIds: initialResult,
+        },
+        [finish.id]: {
+          ...finish,
+          taskIds: destinationResult,
         },
       };
     }
